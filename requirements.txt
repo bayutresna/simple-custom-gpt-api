@@ -5,6 +5,8 @@ python-multipart
 langchain
 langchain-community
 chromadb
+
+tqdm
 sentence_transformers
 pypdf
 docx2txt
@@ -16,3 +18,5 @@ openpyxl
 pyxlsb
 xlrd
 PyMuPDF
+python-docx
+doc_loader
