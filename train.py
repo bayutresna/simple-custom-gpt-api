@@ -5,6 +5,7 @@ from typing import List
 from multiprocessing import Pool
 from tqdm import tqdm
 from fastapi import FastAPI
+import time
 
 from langchain_community.document_loaders import (
     CSVLoader,
@@ -136,6 +137,7 @@ def does_vectorstore_exist(persist_directory: str) -> bool:
 
 @app.get("/")
 async def train():
+    start = time.time()
     # Create embeddings
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
 
@@ -156,6 +158,7 @@ async def train():
         db = Chroma.from_documents(texts, embeddings, persist_directory=persist_directory)
     db.persist()
     db = None
-    return{"success":True, "message":"files trained successfully"}
+    end = time.time()
+    return{"success":True, "message":"files trained successfully", "elapsed_time":end-start}
 
 
