@@ -13,14 +13,17 @@ import time
 
 app = FastAPI()
 
-model = os.environ.get("MODEL", "mistral")
+model_name = 'mistral'
+model = os.environ.get("MODEL", model_name)
+target_chunk = 100
+
 # For embeddings model, the example uses a sentence-transformers model
 # https://www.sbert.net/docs/pretrained_models.html 
 # "The all-mpnet-base-v2 model provides the best quality, while all-MiniLM-L6-v2 is 5 times faster and still offers good quality."
 embeddings_model_name = os.environ.get("EMBEDDINGS_MODEL_NAME", "all-MiniLM-L6-v2")
 persist_directory = os.environ.get("PERSIST_DIRECTORY", "db")
 # edit this variable to determined how much chunks you want the ai for taking the context
-target_source_chunks = int(os.environ.get('TARGET_SOURCE_CHUNKS',100))
+target_source_chunks = int(os.environ.get('TARGET_SOURCE_CHUNKS',target_chunk))
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='privateGPT: Ask questions to your documents without an internet connection, '

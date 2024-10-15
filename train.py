@@ -18,7 +18,8 @@ from langchain_community.document_loaders import (
     UnstructuredMarkdownLoader,
     UnstructuredODTLoader,
     UnstructuredPowerPointLoader,
-    UnstructuredWordDocumentLoader,
+    Docx2txtLoader,
+    WebBaseLoader,
 )
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -62,8 +63,8 @@ class MyElmLoader(UnstructuredEmailLoader):
 LOADER_MAPPING = {
     ".csv": (CSVLoader, {}),
     # ".docx": (Docx2txtLoader, {}),
-    ".doc": (UnstructuredWordDocumentLoader, {}),
-    ".docx": (UnstructuredWordDocumentLoader, {}),
+    ".doc": (Docx2txtLoader, {}),
+    ".docx": (Docx2txtLoader, {}),
     ".enex": (EverNoteLoader, {}),
     ".eml": (MyElmLoader, {}),
     ".epub": (UnstructuredEPubLoader, {}),
